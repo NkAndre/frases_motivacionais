@@ -8,6 +8,7 @@ const frases = [
   "Nunca desista dos seus sonhos",
   "Sempre haverá uma nova chance",
   "Acredite em si próprio",
+  "Seja forte e corajoso"
 ];
 
 export default function App() {
@@ -65,4 +66,12 @@ const styles = StyleSheet.create({
     },
     shadowOpacity:0.2
   },
+  textoFrase:{
+    fontWeight:"bold",
+    fontSize:18,
+    alignItems:"center",
+    fontStyle:'italic',
+  }
+
+
 });
