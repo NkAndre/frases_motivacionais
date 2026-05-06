@@ -1,6 +1,6 @@
 import { StatusBar } from "expo-status-bar";
 
-import React, { useState, useRef } from "react"; 
+import React, { useState, useRef } from "react";
 import { StyleSheet, Text, View, Pressable, Image, Animated, Share } from "react-native";
 
 const frases = [
@@ -13,8 +13,7 @@ const frases = [
 
 export default function App() {
   const [frase, setFrase] = useState(frases[0]);
-  
-  // Agora o useRef está importado corretamente!
+
   const fadeAnim = useRef(new Animated.Value(1)).current;
 
   const gerarFrase = () => {
@@ -37,8 +36,18 @@ export default function App() {
   const compartilharFrase = async () => {
     try {
       await Share.share({
-        message: `"${frase}" - Frases do Dia`,
+        message: ` Olha essa frase que vi no app: \n\n"${frase}"`,
+        title: 'frase do dia'
       });
+      if (result.action === Share.sharedAction) {
+        if (result.activityType) {
+          
+        } else {
+          
+        }
+      } else if (result.action === Share.dismissedAction) {
+      
+      }
     } catch (error) {
       alert(error.message);
     }
@@ -49,19 +58,19 @@ export default function App() {
       <View style={styles.cardImage}>
         <Image source={require('./assets/pensar.png')} style={{ width: 150, height: 150, resizeMode: 'contain' }} />
       </View>
-      
+
       <Text style={styles.textTitulo}>frases do dia</Text>
 
-      <Animated.View style={[styles.card, 
-        { opacity: fadeAnim }]}>
+      <Animated.View style={[styles.card,
+      { opacity: fadeAnim }]}>
         <Text style={styles.aspas}>“</Text>
         <Text style={styles.textoFrase}>{frase}</Text>
         <Text style={[styles.aspas, { textAlign: 'right' }]}>”</Text>
       </Animated.View>
 
       <View style={styles.areaBotoes}>
-        <Pressable 
-          style={({ pressed }) => [styles.botao, pressed && { opacity: 0.7, transform: [{scale: 0.98}] }]} 
+        <Pressable
+          style={({ pressed }) => [styles.botao, pressed && { opacity: 0.7, transform: [{ scale: 0.98 }] }]}
           onPress={gerarFrase}
         >
           <Text style={styles.textoBotao}>Nova Frase</Text>
