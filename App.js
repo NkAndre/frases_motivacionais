@@ -2,13 +2,13 @@ import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View, Pressable, Image } from "react-native";
 import React, { useState } from "react";
 
-// array de frases , quer adiciona as suas? coloque aqui 
+// array de frases , quer adiciona as suas? coloque aqui  vlw 
 const frases = [
   "Porque para Deus nada é impossivel",
   "Nunca desista dos seus sonhos",
   "Sempre haverá uma nova chance",
   "Acredite em si próprio",
-  "Seja forte e corajoso"
+  "Seja forte e corajoso",
 ];
 
 export default function App() {
@@ -19,6 +19,7 @@ export default function App() {
     const indiceAleatorio = Math.floor(Math.random() * frases.length);
     setFrase(frases[indiceAleatorio]);
   };
+
   return (
     <View style={styles.container}>
       <Text style={styles.textTitulo}>frases do dia </Text>
@@ -71,7 +72,18 @@ const styles = StyleSheet.create({
     fontSize:18,
     alignItems:"center",
     fontStyle:'italic',
+  },
+  botao: {
+    backgroundColor: '#fff',
+    paddingVertical: 12,
+    paddingHorizontal: 30,
+    borderRadius: 8,
+    marginTop: 10
+  },
+  textoBotao: {
+    color: '#000',
+    fontWeight: 'bold',
+    fontSize: 16
   }
-
 
 });
