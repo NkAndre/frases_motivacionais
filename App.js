@@ -35,24 +35,25 @@ export default function App() {
 
   const compartilharFrase = async () => {
     try {
-      await Share.share({
-        message: ` Olha essa frase que vi no app: \n\n"${frase}"`,
+      const result = await Share.share({
+        message: `Olha essa frase que vi no app: \n\n"${frase}"`,
         title: 'frase do dia'
       });
-      if (result.action === Share.sharedAction) {
-        if (result.activityType) {
-          
-        } else {
-          
+
+    
+      if (result && result.action) {
+        if (result.action === Share.sharedAction) {
+          if (result.activityType) {
+            
+          }
+        } else if (result.action === Share.dismissedAction) {
+       
         }
-      } else if (result.action === Share.dismissedAction) {
-      
       }
     } catch (error) {
       alert(error.message);
     }
   };
-
   return (
     <View style={styles.container}>
       <View style={styles.cardImage}>
