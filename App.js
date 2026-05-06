@@ -10,7 +10,7 @@ const frases = [
 ]
 
 export default function App() {
-  const [frase, setFrase] = useState(frases[0]) // state atual para controlar as nossas frases
+  const [frase, setFrase] = useState(frases[1]) // state atual para controlar as nossas frases
 
   // função para gerar frases aleatorias
   const gerarFrases = () => {
@@ -19,7 +19,13 @@ export default function App() {
   } 
   return (
     <View style={styles.container}>
-      <Text>Hello world</Text>
+      <Text style = {styles.textTitulo}>frases do dia </Text>
+
+      <View style={styles.card}>
+        <Text style={styles.textoFrase}>"{frase}"</Text>
+      </View>
+
+      
       <StatusBar style="auto" />
     </View>
   );
@@ -32,4 +38,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  textTitulo:{
+    color:"#000"
+  }
 });
