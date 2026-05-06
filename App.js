@@ -6,16 +6,17 @@ const frases = [
   "Porque para Deus nada é impossivel",
   "Nunca desista dos seus sonhos",
   "Sempre haverá uma nova chance",
-  "Acredite em si próprio e todo o resto virá naturalmente."
+  "Acredite em si próprio e todo o resto virá naturalmente.",
+ 
 ]
 
 export default function App() {
-  const [frase, setFrase] = useState(frases[1]) // state atual para controlar as nossas frases
+  const [frase, setFrase] = useState(frases[0]) // state atual para controlar as nossas frases
 
   // função para gerar frases aleatorias
-  const gerarFrases = () => {
+  const gerarFrase = () => {
     const indiceAleatorio = Math.floor(Math.random() * frases.length); 
-    setFrase(frase[indiceAleatorio]);
+    setFrase(frases[indiceAleatorio]);
   } 
   return (
     <View style={styles.container}>
@@ -24,8 +25,15 @@ export default function App() {
       <View style={styles.card}>
         <Text style={styles.textoFrase}>"{frase}"</Text>
       </View>
+      <View>
+        <Pressable style = {styles.botao} onPress={gerarFrase}>
+          <Text style={styles.textoBotao}>Nova Frase</Text>
+        </Pressable>
+        
+        
+      </View>
 
-      
+
       <StatusBar style="auto" />
     </View>
   );
