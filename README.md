@@ -26,7 +26,7 @@
 
 ## 🚀 Como executar
 
- 1-  git clone  [https://github.com/NkAndre/zooKids.git](https://github.com/NkAndre/frases_motivacionais.git)
+ 1-  git clone  https://github.com/NkAndre/frases_motivacionais.git
 
  2 - cd zooKids 
 
