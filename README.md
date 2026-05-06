@@ -9,7 +9,8 @@
 
 ## 🚀 Tecnologias
 
-<img src="https://reactnative.dev/img/header_logo.svg" width="40"/>  
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" height="40" alt="react logo"  />
+  <img width="12" />
 
 ---
 
@@ -25,7 +26,7 @@
 
 ## 🚀 Como executar
 
- 1-  git clone  https://github.com/NkAndre/zooKids.git
+ 1-  git clone  [https://github.com/NkAndre/zooKids.git](https://github.com/NkAndre/frases_motivacionais.git)
 
  2 - cd zooKids 
 
@@ -37,3 +38,9 @@
 Node.js instalado
 npm ou yarn
 Expo Go no celular (se for usar Expo)
+
+
+## Autoria por André 🧑🏽‍💻 
+
+
+>  **💛 Feito com todo carinho e dedicação**
