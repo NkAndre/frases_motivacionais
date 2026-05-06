@@ -1,3 +1,7 @@
+<p align= "center">
+  Gerador de frases Motivacionais
+</p>
+
 <p align="center">
   <img src="https://img.shields.io/badge/Status-Em%20Desenvolvimento-green?style=for-the-badge" alt="Status">
 </p>
