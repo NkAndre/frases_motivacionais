@@ -10,7 +10,13 @@ const frases = [
 ]
 
 export default function App() {
-  
+  const [frase, setFrase] = useState(frases[0]) // state atual para controlar as nossas frases
+
+  // função para gerar frases aleatorias
+  const gerarFrases = () => {
+    const indiceAleatorio = Math.floor(Math.random() * frases.length); 
+    setFrase(frase[indiceAleatorio]);
+  } 
   return (
     <View style={styles.container}>
       <Text>Hello world</Text>
