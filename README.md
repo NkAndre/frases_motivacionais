@@ -28,7 +28,7 @@
 
  1-  git clone  https://github.com/NkAndre/frases_motivacionais.git
 
- 2 - cd zooKids 
+ 2 - cd frases_motivacionais 
 
  3 - npm install 
   
