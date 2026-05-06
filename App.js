@@ -3,10 +3,14 @@ import { StyleSheet, Text, View, Pressable,Image } from 'react-native';
 import React, { useState } from 'react';
 
 const frases = [ 
-  "Nunca"
+  "Porque para Deus nada é impossivel",
+  "Nunca desista dos seus sonhos",
+  "Sempre haverá uma nova chance",
+  "Acredite em si próprio e todo o resto virá naturalmente."
 ]
 
 export default function App() {
+  
   return (
     <View style={styles.container}>
       <Text>Hello world</Text>
