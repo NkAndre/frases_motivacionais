@@ -1,5 +1,5 @@
 <p align= "center">
- ##  Gerador de frases Motivacionais
+   Gerador de frases Motivacionais
 </p>
 
 <p align="center">
