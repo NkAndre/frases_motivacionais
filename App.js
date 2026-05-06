@@ -4,11 +4,12 @@ import React, { useState, useRef } from "react";
 import { StyleSheet, Text, View, Pressable, Image, Animated, Share } from "react-native";
 
 const frases = [
-  "Porque para Deus nada é impossível",
-  "Nunca desista dos seus sonhos",
-  "Sempre haverá uma nova chance",
-  "Acredite em si próprio",
-  "Seja forte e corajoso",
+  {texto:"Porque para Deus nada é impossível", categoria:"fé"},
+  {texto:"Nunca desista dos seus sonhos", categoria : "motivacao"},
+  {texto:"Sempre haverá uma nova chance",categoria:"motivacao"},
+  {texto:"Acredite em si próprio",categoria:"motivacao"},
+  { texto: "Sorrir é o melhor remédio", categoria: "engracada" },
+  
 ];
 
 export default function App() {
