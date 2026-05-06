@@ -22,6 +22,11 @@ export default function App() {
 
   return (
     <View style={styles.container}>
+
+      <View style={styles.cardImage}>
+      <Image source={require('./assets/pensar.png')} />
+
+      </View>
       <Text style={styles.textTitulo}>frases do dia </Text>
 
       <View style={styles.card}>
@@ -46,6 +51,10 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     padding: 20,
   },
+  cardImage:{
+    padding:20,
+    alignItems:"center"
+  },
   textTitulo: {
     fontSize: 24,
     fontWeight: "bold",
@@ -56,7 +65,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     padding: 20,
     borderRadius: 20,
-    marginVertical: 20,
+    marginVertical: 10,
     elevation: 2,
     width: "100%",
     alignItems: "center",
