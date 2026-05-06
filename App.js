@@ -48,8 +48,9 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#ADD8E6",
     alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "flex-start",
     padding: 20,
+    paddingTop:100
   },
   cardImage:{
     padding:20,
