@@ -42,11 +42,24 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#ADD8E6',
     alignItems: 'center',
     justifyContent: 'center',
+    padding:20,
   },
   textTitulo:{
-    color:"#000"
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginBottom: 20,
+    color: "#333"
+  } , 
+  card:{
+    backgroundColor:"#fff",
+    padding:20,
+    borderRadius:20,
+    marginVertical:20,
+    elevation:3,
+     width: '100%',
+     alignItems:"center",
   }
 });
