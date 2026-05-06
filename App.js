@@ -12,6 +12,12 @@ const frases = [
   
 ];
 
+const temasCategoria = {
+  fé: "#FFD700",       // Dourado
+  motivacao: "#ADD8E6", // Azul
+  engracada: "#90EE90", // Verde
+};
+
 export default function App() {
   const [frase, setFrase] = useState(frases[0]);
 
