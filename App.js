@@ -40,12 +40,14 @@ export default function App() {
     });
   };
 
-  // --- LÓGICA DE CORES 
-  const corFundoFundo = isDarkMode ? "#121212" : temasCategoria[frase.categoria];
-  const corTexto = isDarkMode ? "#FFF" : "#333";
-  const corCard = isDarkMode ? "#1E1E1E" : "#FFF";
-  const corAspas = isDarkMode ? "#555" : "#ADD8E6"; // Aspas visíveis nos dois modos
-
+ const cores = {
+    fundo: isDarkMode ? "#0F0F10" : temasCategoria[frase.categoria],
+    card: isDarkMode ? "#1C1C1E" : "#FFFFFF",
+    texto: isDarkMode ? "#F2F2F7" : "#333333",
+    aspas: isDarkMode ? "#3A3A3C" : "#ADD8E6",
+    botaoFundo: isDarkMode ? "#FFFFFF" : "#333333",
+    botaoTexto: isDarkMode ? "#000000" : "#FFFFFF"
+  };
   const compartilharFrase = async () => {
     try {
       await Share.share({
@@ -58,7 +60,7 @@ export default function App() {
 
   return (
    
-    <View style={[styles.container, { backgroundColor: corFundoFundo }]}>
+    <View style={[styles.container, { backgroundColor: cores.fundo }]}>
       <StatusBar style={isDarkMode ? "light" : "dark"} />
 
       <Pressable onPress={toggleDarkMode} style={styles.botaoDark}>
@@ -72,13 +74,13 @@ export default function App() {
         />
       </View>
 
-      <Text style={[styles.textTitulo, { color: corTexto }]}>frases do dia</Text>
+      <Text style={[styles.textTitulo, { color: cores.texto}]}>frases do dia</Text>
 
  
-      <Animated.View style={[styles.card, { opacity: fadeAnim, backgroundColor: corCard }]}>
-        <Text style={[styles.aspas, { color: corAspas }]}>“</Text>
-        <Text style={[styles.textoFrase, { color: corTexto }]}>{frase.texto}</Text>
-        <Text style={[styles.aspas, { textAlign: 'right', color: corAspas }]}>”</Text>
+      <Animated.View style={[styles.card, { opacity: fadeAnim, backgroundColor: cores.card }]}>
+        <Text style={[styles.aspas, { color: cores.aspas }]}>“</Text>
+        <Text style={[styles.textoFrase, { color: cores.texto}]}>{frase.texto}</Text>
+        <Text style={[styles.aspas, { textAlign: 'right', color: cores.aspas }]}>”</Text>
       </Animated.View>
 
       <View style={styles.areaBotoes}>
@@ -94,7 +96,7 @@ export default function App() {
         </Pressable>
 
         <Pressable style={styles.botaoShare} onPress={compartilharFrase}>
-          <Text style={[styles.textoBotaoShare, { color: corTexto }]}>Compartilhar Frase</Text>
+          <Text style={[styles.textoBotaoShare, { color: cores.texto }]}>Compartilhar Frase</Text>
         </Pressable>
       </View>
     </View>
