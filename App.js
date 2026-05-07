@@ -4,6 +4,7 @@ import { StyleSheet, Text, View, Pressable, Image, Animated, Share } from "react
 
 const frases = [
   { texto: "Porque para Deus nada é impossível", categoria: "fé" },
+  { texto: "Josué 1:9", categoria: "fé" },
   { texto: "Nunca desista dos seus sonhos", categoria: "motivacao" },
   { texto: "Sempre haverá uma nova chance", categoria: "motivacao" },
   { texto: "Acredite em si próprio", categoria: "motivacao" },
