@@ -1,15 +1,13 @@
 import { StatusBar } from "expo-status-bar";
-
 import React, { useState, useRef } from "react";
 import { StyleSheet, Text, View, Pressable, Image, Animated, Share } from "react-native";
 
 const frases = [
-  {texto:"Porque para Deus nada é impossível", categoria:"fé"},
-  {texto:"Nunca desista dos seus sonhos", categoria : "motivacao"},
-  {texto:"Sempre haverá uma nova chance",categoria:"motivacao"},
-  {texto:"Acredite em si próprio",categoria:"motivacao"},
+  { texto: "Porque para Deus nada é impossível", categoria: "fé" },
+  { texto: "Nunca desista dos seus sonhos", categoria: "motivacao" },
+  { texto: "Sempre haverá uma nova chance", categoria: "motivacao" },
+  { texto: "Acredite em si próprio", categoria: "motivacao" },
   { texto: "Sorrir é o melhor remédio", categoria: "engracada" },
-  
 ];
 
 const temasCategoria = {
@@ -20,8 +18,10 @@ const temasCategoria = {
 
 export default function App() {
   const [frase, setFrase] = useState(frases[0]);
-
+  const [isDarkMode, setIsDarkMode] = useState(false);
   const fadeAnim = useRef(new Animated.Value(1)).current;
+
+  const toggleDarkMode = () => setIsDarkMode(!isDarkMode);
 
   const gerarFrase = () => {
     Animated.timing(fadeAnim, {
@@ -40,56 +40,63 @@ export default function App() {
     });
   };
 
+  // --- LÓGICA DE CORES 
+  const corFundoFundo = isDarkMode ? "#121212" : temasCategoria[frase.categoria];
+  const corTexto = isDarkMode ? "#FFF" : "#333";
+  const corCard = isDarkMode ? "#1E1E1E" : "#FFF";
+  const corAspas = isDarkMode ? "#555" : "#ADD8E6"; // Aspas visíveis nos dois modos
+
   const compartilharFrase = async () => {
     try {
-      const result = await Share.share({
-        message: `Olha essa frase que vi no app: \n\n"${frase}"`,
-        title: 'frase do dia'
+      await Share.share({
+        message: `Olha essa frase que vi no app: \n\n"${frase.texto}"`,
       });
-
-    
-      if (result && result.action) {
-        if (result.action === Share.sharedAction) {
-          if (result.activityType) {
-            
-          }
-        } else if (result.action === Share.dismissedAction) {
-       
-        }
-      }
     } catch (error) {
       alert(error.message);
     }
   };
+
   return (
-    <View style={styles.container}>
+   
+    <View style={[styles.container, { backgroundColor: corFundoFundo }]}>
+      <StatusBar style={isDarkMode ? "light" : "dark"} />
+
+      <Pressable onPress={toggleDarkMode} style={styles.botaoDark}>
+        <Text style={{ fontSize: 30 }}>{isDarkMode ? "☀️" : "🌙"}</Text>
+      </Pressable>
+
       <View style={styles.cardImage}>
-        <Image source={require('./assets/pensar.png')} style={{ width: 150, height: 150, resizeMode: 'contain' }} />
+        <Image 
+          source={require('./assets/pensar.png')} 
+          style={[styles.logo, isDarkMode && { tintColor: '#FFF' }]} 
+        />
       </View>
 
-      <Text style={styles.textTitulo}>frases do dia</Text>
+      <Text style={[styles.textTitulo, { color: corTexto }]}>frases do dia</Text>
 
-      <Animated.View style={[styles.card,
-      { opacity: fadeAnim }]}>
-        <Text style={styles.aspas}>“</Text>
-        <Text style={styles.textoFrase}>{frase}</Text>
-        <Text style={[styles.aspas, { textAlign: 'right' }]}>”</Text>
+ 
+      <Animated.View style={[styles.card, { opacity: fadeAnim, backgroundColor: corCard }]}>
+        <Text style={[styles.aspas, { color: corAspas }]}>“</Text>
+        <Text style={[styles.textoFrase, { color: corTexto }]}>{frase.texto}</Text>
+        <Text style={[styles.aspas, { textAlign: 'right', color: corAspas }]}>”</Text>
       </Animated.View>
 
       <View style={styles.areaBotoes}>
         <Pressable
-          style={({ pressed }) => [styles.botao, pressed && { opacity: 0.7, transform: [{ scale: 0.98 }] }]}
+          style={({ pressed }) => [
+            styles.botao, 
+            { backgroundColor: isDarkMode ? "#333" : "#FFF" },  
+            pressed && { opacity: 0.7, transform: [{ scale: 0.98 }] }
+          ]}
           onPress={gerarFrase}
         >
-          <Text style={styles.textoBotao}>Nova Frase</Text>
+          <Text style={[styles.textoBotao, { color: isDarkMode ? "#FFF" : "#000" }]}>Nova Frase</Text>
         </Pressable>
 
         <Pressable style={styles.botaoShare} onPress={compartilharFrase}>
-          <Text style={styles.textoBotaoShare}>Compartilhar Frase</Text>
+          <Text style={[styles.textoBotaoShare, { color: corTexto }]}>Compartilhar Frase</Text>
         </Pressable>
       </View>
-
-      <StatusBar style="auto" />
     </View>
   );
 }
@@ -97,49 +104,53 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#ADD8E6",
     alignItems: "center",
     justifyContent: "flex-start",
     padding: 20,
-    paddingTop: 80,
+    paddingTop: 60,
+  },
+  botaoDark: {
+    alignSelf: 'flex-end',
+    marginBottom: 10,
   },
   cardImage: {
     marginBottom: 10,
     alignItems: "center",
   },
+  logo: {
+    width: 120,
+    height: 120,
+    resizeMode: 'contain',
+  },
   textTitulo: {
     fontSize: 24,
     fontWeight: "bold",
     marginBottom: 20,
-    color: "#333",
     textTransform: 'lowercase'
   },
   card: {
-    backgroundColor: "#fff",
     padding: 30,
     borderRadius: 25,
     width: "100%",
-    minHeight: 150,
+    minHeight: 180,
     justifyContent: 'center',
-    elevation: 4,
+    elevation: 8, 
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.1,
-    shadowRadius: 10,
+    shadowOpacity: 0.2,
+    shadowRadius: 5,
   },
   aspas: {
-    fontSize: 40,
+    fontSize: 50,
     fontWeight: 'bold',
-    color: '#ADD8E6',
     marginTop: -20,
     marginBottom: -10,
   },
   textoFrase: {
     fontWeight: "bold",
-    fontSize: 20,
+    fontSize: 22,
     textAlign: "center",
     fontStyle: 'italic',
-    color: '#444',
     paddingHorizontal: 10,
   },
   areaBotoes: {
@@ -148,14 +159,13 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   botao: {
-    backgroundColor: '#333',
     paddingVertical: 15,
     paddingHorizontal: 50,
-    borderRadius: 12,
+    borderRadius: 15,
     marginBottom: 15,
+    elevation: 3,
   },
   textoBotao: {
-    color: '#fff',
     fontWeight: 'bold',
     fontSize: 16,
   },
@@ -163,7 +173,6 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   textoBotaoShare: {
-    color: '#333',
     fontWeight: '600',
     textDecorationLine: 'underline'
   }
