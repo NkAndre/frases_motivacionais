@@ -9,6 +9,9 @@ const frases = [
   { texto: "Sempre haverá uma nova chance", categoria: "motivacao" },
   { texto: "Acredite em si próprio", categoria: "motivacao" },
   { texto: "Sorrir é o melhor remédio", categoria: "engracada" },
+  { texto: "Minha cama me chama mais do que qualquer pessoa", categoria: "engracada" },
+  {texto: "Essa semana eu tô dando orgulho! Orgulho pra clínica psiquiátrica", categoria: "engracada"},
+  {texto:"Tenho medo de perguntar pra Deus onde eu errei e Ele não parar de falar…", categoria:"engracada"}
 ];
 
 const temasCategoria = {
