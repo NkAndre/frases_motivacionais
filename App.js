@@ -12,17 +12,14 @@ const frases = [
 ];
 
 const temasCategoria = {
-  fé: "#FFD700",       // Dourado
-  motivacao: "#ADD8E6", // Azul
-  engracada: "#90EE90", // Verde
+  fé: "#FFD700",
+  motivacao: "#ADD8E6",
+  engracada: "#90EE90",
 };
 
 export default function App() {
   const [frase, setFrase] = useState(frases[0]);
-  const [isDarkMode, setIsDarkMode] = useState(false);
   const fadeAnim = useRef(new Animated.Value(1)).current;
-
-  const toggleDarkMode = () => setIsDarkMode(!isDarkMode);
 
   const gerarFrase = () => {
     Animated.timing(fadeAnim, {
@@ -41,14 +38,6 @@ export default function App() {
     });
   };
 
- const cores = {
-    fundo: isDarkMode ? "#0F0F10" : temasCategoria[frase.categoria],
-    card: isDarkMode ? "#1C1C1E" : "#FFFFFF",
-    texto: isDarkMode ? "#F2F2F7" : "#333333",
-    aspas: isDarkMode ? "#3A3A3C" : "#ADD8E6",
-    botaoFundo: isDarkMode ? "#FFFFFF" : "#333333",
-    botaoTexto: isDarkMode ? "#000000" : "#FFFFFF"
-  };
   const compartilharFrase = async () => {
     try {
       await Share.share({
@@ -60,44 +49,37 @@ export default function App() {
   };
 
   return (
-   
-    <View style={[styles.container, { backgroundColor: cores.fundo }]}>
-      <StatusBar style={isDarkMode ? "light" : "dark"} />
-
-      <Pressable onPress={toggleDarkMode} style={styles.botaoDark}>
-        <Text style={{ fontSize: 30 }}>{isDarkMode ? "☀️" : "🌙"}</Text>
-      </Pressable>
+    <View style={[styles.container, { backgroundColor: temasCategoria[frase.categoria] }]}>
+      <StatusBar style="dark" />
 
       <View style={styles.cardImage}>
-        <Image 
-          source={require('./assets/pensar.png')} 
-          style={[styles.logo, isDarkMode && { tintColor: '#FFF' }]} 
+        <Image
+          source={require('./assets/pensar.png')}
+          style={styles.logo}
         />
       </View>
 
-      <Text style={[styles.textTitulo, { color: cores.texto}]}>frases do dia</Text>
+      <Text style={styles.textTitulo}>frases do dia</Text>
 
- 
-      <Animated.View style={[styles.card, { opacity: fadeAnim, backgroundColor: cores.card }]}>
-        <Text style={[styles.aspas, { color: cores.aspas }]}>“</Text>
-        <Text style={[styles.textoFrase, { color: cores.texto}]}>{frase.texto}</Text>
-        <Text style={[styles.aspas, { textAlign: 'right', color: cores.aspas }]}>”</Text>
+      <Animated.View style={[styles.card, { opacity: fadeAnim }]}>
+        <Text style={styles.aspas}>"</Text>
+        <Text style={styles.textoFrase}>{frase.texto}</Text>
+        <Text style={[styles.aspas, { textAlign: 'right' }]}>"</Text>
       </Animated.View>
 
       <View style={styles.areaBotoes}>
         <Pressable
           style={({ pressed }) => [
-            styles.botao, 
-            { backgroundColor: isDarkMode ? "#333" : "#FFF" },  
+            styles.botao,
             pressed && { opacity: 0.7, transform: [{ scale: 0.98 }] }
           ]}
           onPress={gerarFrase}
         >
-          <Text style={[styles.textoBotao, { color: isDarkMode ? "#FFF" : "#000" }]}>Nova Frase</Text>
+          <Text style={styles.textoBotao}>Nova Frase</Text>
         </Pressable>
 
         <Pressable style={styles.botaoShare} onPress={compartilharFrase}>
-          <Text style={[styles.textoBotaoShare, { color: cores.texto }]}>Compartilhar Frase</Text>
+          <Text style={styles.textoBotaoShare}>Compartilhar Frase</Text>
         </Pressable>
       </View>
     </View>
@@ -112,10 +94,6 @@ const styles = StyleSheet.create({
     padding: 20,
     paddingTop: 60,
   },
-  botaoDark: {
-    alignSelf: 'flex-end',
-    marginBottom: 10,
-  },
   cardImage: {
     marginBottom: 10,
     alignItems: "center",
@@ -129,7 +107,8 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: "bold",
     marginBottom: 20,
-    textTransform: 'lowercase'
+    textTransform: 'lowercase',
+    color: "#333333",
   },
   card: {
     padding: 30,
@@ -137,7 +116,8 @@ const styles = StyleSheet.create({
     width: "100%",
     minHeight: 180,
     justifyContent: 'center',
-    elevation: 8, 
+    backgroundColor: "#FFFFFF",
+    elevation: 8,
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.2,
@@ -148,6 +128,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginTop: -20,
     marginBottom: -10,
+    color: "#ADD8E6",
   },
   textoFrase: {
     fontWeight: "bold",
@@ -155,11 +136,12 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontStyle: 'italic',
     paddingHorizontal: 10,
+    color: "#333333",
   },
   areaBotoes: {
     marginTop: 30,
     width: '100%',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   botao: {
     paddingVertical: 15,
@@ -167,16 +149,19 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     marginBottom: 15,
     elevation: 3,
+    backgroundColor: "#FFFFFF",
   },
   textoBotao: {
     fontWeight: 'bold',
     fontSize: 16,
+    color: "#000000",
   },
   botaoShare: {
     padding: 10,
   },
   textoBotaoShare: {
     fontWeight: '600',
-    textDecorationLine: 'underline'
-  }
+    textDecorationLine: 'underline',
+    color: "#333333",
+  },
 });
